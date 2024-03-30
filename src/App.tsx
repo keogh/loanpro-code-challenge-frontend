@@ -5,7 +5,7 @@ import HomePage from './domain/Homepage';
 
 // process.env.NODE_ENV and process.env.PUBLIC_URL are set by Create React App
 // and then replaced with a string when building the project for dev and prod
-const basePath = process.env.NODE_ENV === 'production' ? process.env.PUBLIC_URL : '';
+const basePath = process.env.NODE_ENV === 'development' ? '' : process.env.PUBLIC_URL;
 
 const router = createBrowserRouter([
   {
