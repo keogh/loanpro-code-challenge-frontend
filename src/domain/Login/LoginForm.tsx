@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { SubmitHandler, useForm } from "react-hook-form";
+import Input from "../../components/Input";
+import ErrorMessage from "../../components/ErrorMessage";
 
 type FormData = {
   username: string;
@@ -13,7 +15,7 @@ const LoginForm: React.FC = () => {
     watch,
     formState: { errors },
   } = useForm<FormData>()
-  const onSubmit: SubmitHandler<FormData> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" action="#" method="POST">
@@ -22,15 +24,17 @@ const LoginForm: React.FC = () => {
           Username
         </label>
         <div className="mt-2">
-          <input
+          <Input
             id="username"
             type="text"
             autoComplete="username"
-            // required
             {...register('username', { required: true })}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            variant={!!errors.username ? 'error' : 'primary' }
           />
         </div>
+        <ErrorMessage id="username-error" active={!!errors?.username}>
+          Username is required
+        </ErrorMessage>
       </div>
 
       <div>
@@ -40,14 +44,16 @@ const LoginForm: React.FC = () => {
           </label>
         </div>
         <div className="mt-2">
-          <input
+          <Input
             id="password"
             type="password"
             autoComplete="current-password"
-            required
             {...register('password', { required: true })}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            variant={!!errors.password ? 'error' : 'primary' }
           />
+          <ErrorMessage id="username-error" active={!!errors?.password}>
+            Password is required
+          </ErrorMessage>
         </div>
       </div>
 
