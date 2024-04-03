@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Login from './domain/Login';
 import HomePage from './domain/Homepage';
 import AuthWrapper from "./domain/Auth/AuthWrapper";
+import RecordNew from "./domain/Records/RecordNew";
 
 // process.env.NODE_ENV and process.env.PUBLIC_URL are set by Create React App
 // and then replaced with a string when building the project for dev and prod
@@ -17,7 +18,8 @@ const router = createBrowserRouter([
       </AuthWrapper>
     ),
     children: [
-      { index: true, element: <HomePage />},
+      { index: true, element: <HomePage /> },
+      { path: 'records/new', element: <RecordNew /> },
     ]
   },
   {
