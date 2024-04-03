@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SubmitHandler, useForm } from "react-hook-form";
+import { useNavigate } from 'react-router-dom';
 import Input from "../../components/Input";
 import ErrorMessage from "../../components/ErrorMessage";
 import {FormInput} from "./types";
@@ -13,14 +14,15 @@ const LoginForm: React.FC = () => {
   } = useForm<FormInput>();
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [showInvalidCredentialsError, setShowInvalidCredentialsError] = React.useState(false);
+  const navigate = useNavigate();
 
   const onSubmit: SubmitHandler<FormInput> = async (data) => {
     setIsSubmitting(true)
     setShowInvalidCredentialsError(false);
     try {
       const responseData = await signIn(data);
-      console.log('Success:', responseData);
-      // TODO: save token and redirect to /
+      localStorage.setItem('authToken', responseData.token);
+      navigate('/');
     } catch (error) {
       setShowInvalidCredentialsError(true);
     } finally {
