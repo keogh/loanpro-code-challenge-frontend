@@ -1,7 +1,22 @@
 import * as React from 'react';
 import Input from "../../components/Input";
+import {useLoaderData} from "react-router-dom";
+
+interface IOperation {
+  id: number | string;
+  type: string;
+  cost: number;
+}
+
+interface IOperationResponse {
+  success: boolean;
+  operations: IOperation[];
+}
 
 const RecordForm = () => {
+  const data = useLoaderData() as IOperationResponse;
+  const operations = data.operations;
+
   return (
     <div
       className={`
@@ -28,7 +43,10 @@ const RecordForm = () => {
                   sm:text-sm sm:leading-6`
                 }
               >
-
+                <option></option>
+                {operations.map((op, i) => (
+                  <option key={op.type} value={op.id}>{op.type}</option>
+                ))}
               </select>
             </div>
           </div>
