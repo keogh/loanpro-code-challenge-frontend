@@ -4,6 +4,7 @@ import Login from './domain/Login';
 import HomePage from './domain/Homepage';
 import AuthWrapper from "./domain/Auth/AuthWrapper";
 import RecordNew, { loader as recordLoader } from "./domain/Records/RecordNew";
+import RecordDetails from "./domain/Records/RecordDetails";
 
 // process.env.NODE_ENV and process.env.PUBLIC_URL are set by Create React App
 // and then replaced with a string when building the project for dev and prod
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
         path: 'records/new',
         element: <RecordNew />,
         loader: recordLoader,
+      },
+      {
+        path: 'records/:id',
+        element: <RecordDetails />,
       },
     ]
   },

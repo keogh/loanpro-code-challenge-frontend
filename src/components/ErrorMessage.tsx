@@ -18,7 +18,14 @@ const ErrorMessage: React.FC<Props> = ({
 
   if (variant === 'errorBox') {
     return (
-      <div className="rounded-md border border-red-700 bg-red-100 py-3 px-4 text-sm text-red-700">
+      <div
+        className={`
+          rounded-md border border-red-700 bg-red-100 
+          py-3 px-4 text-sm text-red-700
+          ${className}
+        `}
+        {...rest}
+      >
         {children}
       </div>
     )

@@ -5,14 +5,15 @@ enum InputVariants {
   ERROR = 'error',
 }
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  // variant?: InputVariants.PRIMARY | InputVariants.ERROR,
   variant?: 'primary' | 'error',
+  error?: boolean,
 }
 
 const Input = React.forwardRef<HTMLInputElement, Props>(
   ({
     className,
     variant = InputVariants.PRIMARY,
+    error = false,
     ...rest
   }, ref) => {
     let innerClassName = `
@@ -21,7 +22,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
       placeholder:text-gray-400 focus:ring-2 focus:ring-inset 
       focus:ring-indigo-600 sm:text-sm sm:leading-6
     `;
-    if (variant === InputVariants.ERROR) {
+    if (error || variant === InputVariants.ERROR) {
       innerClassName = `
         block w-full rounded-md border-0 py-1.5 
         pr-10 text-red-900 ring-1 ring-inset ring-red-300 

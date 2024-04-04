@@ -1,0 +1,1 @@
+export { postRecord } from './records';
