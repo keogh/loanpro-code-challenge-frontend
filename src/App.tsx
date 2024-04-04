@@ -1,10 +1,16 @@
+import 'react-data-grid/lib/styles.css';
 import React from 'react';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Login from './domain/Login';
 import HomePage from './domain/Homepage';
 import AuthWrapper from "./domain/Auth/AuthWrapper";
-import RecordNew, { loader as recordLoader } from "./domain/Records/RecordNew";
-import RecordDetails from "./domain/Records/RecordDetails";
+import {
+  RecordDetails,
+  RecordNew,
+  RecordsList,
+  recordNewLoader
+} from "./domain/Records";
+import {recordsListLoader} from "./domain/Records/loaders";
 
 // process.env.NODE_ENV and process.env.PUBLIC_URL are set by Create React App
 // and then replaced with a string when building the project for dev and prod
@@ -21,9 +27,14 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       {
+        path: 'records',
+        element: <RecordsList />,
+        loader: recordsListLoader,
+      },
+      {
         path: 'records/new',
         element: <RecordNew />,
-        loader: recordLoader,
+        loader: recordNewLoader,
       },
       {
         path: 'records/:id',
