@@ -1,6 +1,6 @@
 import 'react-data-grid/lib/styles.css';
 import React from 'react';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import {createBrowserRouter, RouterProvider, Outlet, useRouteError, Navigate} from 'react-router-dom';
 import Login from './domain/Login';
 import HomePage from './domain/Homepage';
 import AuthWrapper from "./domain/Auth/AuthWrapper";
@@ -11,6 +11,7 @@ import {
   recordNewLoader
 } from "./domain/Records";
 import {recordsListLoader} from "./domain/Records/loaders";
+import {errorCauseList} from "./domain/Api/utils";
 
 // process.env.NODE_ENV and process.env.PUBLIC_URL are set by Create React App
 // and then replaced with a string when building the project for dev and prod
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
         <Outlet />
       </AuthWrapper>
     ),
+    errorElement: <ErrorBoundary />,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -57,3 +59,13 @@ const App: React.FC = () => {
 };
 
 export default App;
+
+function ErrorBoundary() {
+  let error = useRouteError() as Error;
+
+  if (error.cause === errorCauseList.INVALID_TOKEN) {
+    return <Navigate to="/login" />
+  }
+
+  throw error;
+}
