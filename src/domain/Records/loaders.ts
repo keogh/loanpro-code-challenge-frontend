@@ -1,3 +1,4 @@
+import { LoaderFunction } from 'react-router-dom';
 import {OPERATIONS_URL, RECORDS_LIST_URL} from "../Api/routes";
 import {getApi} from "../Api/utils";
 
@@ -11,6 +12,7 @@ export const recordNewLoader = async () => {
   })
 }
 
-export const recordsListLoader = async () => {
-  return getApi(RECORDS_LIST_URL);
+export const recordsListLoader: LoaderFunction = async ({ request }) => {
+  const url = new URL(request.url);
+  return getApi(`${RECORDS_LIST_URL}${url.search}`);
 }

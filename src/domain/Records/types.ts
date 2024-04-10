@@ -1,8 +1,8 @@
+import {IPaginationResponsePartial} from "../Pagination/types";
+
 export interface IRecordsListLoader {
   success: boolean;
-  page: number;
-  per_page: number;
-  total_pages: number;
+  pagination: IPaginationResponsePartial;
   records: IRecordsTableRow[];
 }
 
