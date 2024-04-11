@@ -24,6 +24,7 @@ const RecordsTable = ({ items }: Props) => {
   return (
     <>
       <DataGrid
+        className="rdg-light"
         columns={columns}
         rows={items}
         defaultColumnOptions={DEFAULT_COLUMN_OPTIONS}

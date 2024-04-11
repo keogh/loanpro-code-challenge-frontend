@@ -12,6 +12,7 @@ import {
 } from "./domain/Records";
 import {recordsListLoader} from "./domain/Records/loaders";
 import {errorCauseList} from "./domain/Api/utils";
+import {MainLayout} from "./domain/Layout";
 
 // process.env.NODE_ENV and process.env.PUBLIC_URL are set by Create React App
 // and then replaced with a string when building the project for dev and prod
@@ -22,7 +23,9 @@ const router = createBrowserRouter([
     path: `${basePath}/`,
     element: (
       <AuthWrapper>
-        <Outlet />
+        <MainLayout>
+          <Outlet />
+        </MainLayout>
       </AuthWrapper>
     ),
     errorElement: <ErrorBoundary />,
