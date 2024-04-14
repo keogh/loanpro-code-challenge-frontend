@@ -1,16 +1,21 @@
 import * as React from 'react';
+import {useNavigate} from "react-router-dom";
 
 interface Props extends  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'soft';
+  to?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
   ({
+    to,
+    variant = 'primary',
     children,
     className,
-    variant = 'primary',
+    onClick,
     ...rest
   }, ref) => {
+    const navigate = useNavigate();
 
     let variantClassName = `
       bg-indigo-600 text-white hover:bg-indigo-500 focus-visible:outline-indigo-600
@@ -26,6 +31,20 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       `;
     }
 
+    let extraProps: Props = {};
+    if (!!to) {
+      extraProps.role = 'link';
+    }
+
+    const handleOnClick = React.useCallback((e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      if (!!to) {
+        navigate(to);
+      }
+      if (onClick) {
+        onClick(e);
+      }
+    }, [navigate, onClick, to]);
+
     return (
       <button
         className={`
@@ -36,6 +55,7 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
           ${variantClassName}
           ${className}
         `}
+        onClick={handleOnClick}
         {...rest}
         ref={ref}
       >

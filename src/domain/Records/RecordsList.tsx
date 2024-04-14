@@ -1,5 +1,6 @@
 import * as React from "react";
 import {useLoaderData} from "react-router-dom";
+import {CalculatorIcon} from "@heroicons/react/20/solid";
 
 import RecordsTable from "./RecordsTable";
 import {IRecordsListLoader} from "./types";
@@ -23,10 +24,12 @@ const RecordsList = () => {
           </div>
           <div className="flex-grow-0">
             <Button
-              className=""
-              // to="/records/new"
+              className="flex items-center justify-center"
+              title="New Record"
+              to="/records/new"
             >
-              + New Record
+              +
+              <CalculatorIcon className="h-5 w-5" />
             </Button>
           </div>
         </div>
