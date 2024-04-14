@@ -42,9 +42,16 @@ const Pagination = ({
 
   return (
     <div className="flex justify-between">
-      <div>
-        <label>Rows per page:</label>
-        <select onChange={handleChangePerPage} value={perPage}>
+      <div className="flex items-baseline gap-x-2 pl-2">
+        <label htmlFor="rowsPerPage" className="text-sm">
+          Rows per page:
+        </label>
+        <select
+          id="rowsPerPage"
+          onChange={handleChangePerPage}
+          value={perPage}
+          className="mt-2 block rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        >
           {rowsPerPageOptions.map((option, i) => (
             <option
               key={i}
@@ -56,8 +63,8 @@ const Pagination = ({
         </select>
       </div>
 
-      <div className="flex justify-start items-center gap-5">
-        <div>
+      <div className="flex justify-start items-center gap-3 pr-2">
+        <div className="text-sm">
           {firstItemNumber} - {lastItemNumber > totalItems ? totalItems : lastItemNumber} of {totalItems}
         </div>
 

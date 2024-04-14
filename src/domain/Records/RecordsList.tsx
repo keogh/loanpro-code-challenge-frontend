@@ -34,15 +34,20 @@ const RecordsList = () => {
           </div>
         </div>
       </div>
-      <RecordsTable items={records}/>
-      {pagination && (
-        <Pagination
-          page={parseInt(pagination.page, 10)}
-          perPage={parseInt(pagination.per_page, 10)}
-          totalPages={pagination.total_pages}
-          totalItems={pagination.total_items}
-        />
-      )}
+
+      <div className="border border-gray-200 rounded-md py-1">
+        <RecordsTable items={records}/>
+        {pagination && (
+          <div className="py-2">
+            <Pagination
+              page={parseInt(pagination.page, 10)}
+              perPage={parseInt(pagination.per_page, 10)}
+              totalPages={pagination.total_pages}
+              totalItems={pagination.total_items}
+            />
+          </div>
+        )}
+      </div>
     </>
   );
 };
