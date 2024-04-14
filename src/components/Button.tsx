@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props extends  React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-  variant?: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary' | 'soft';
 }
 
 const Button = React.forwardRef<HTMLButtonElement, Props>(
@@ -19,6 +19,10 @@ const Button = React.forwardRef<HTMLButtonElement, Props>(
       variantClassName = `
         bg-white text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 
         focus-visible:outline-gray-300
+      `;
+    } else if (variant === 'soft') {
+      variantClassName = `
+        bg-indigo-50 text-indigo-600 hover:bg-indigo-100 focus-visible:outline-indigo-50
       `;
     }
 
