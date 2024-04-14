@@ -1,9 +1,11 @@
 import * as React from "react";
-import {Link, useLoaderData} from "react-router-dom";
+import {useLoaderData} from "react-router-dom";
 
 import RecordsTable from "./RecordsTable";
 import {IRecordsListLoader} from "./types";
-import Pagination from "../Pagination/Pagination";
+import {Pagination} from "../Pagination";
+import {SearchBar} from "../SearchBar";
+import Button from "../../components/Button";
 
 const RecordsList = () => {
   const { records = [], pagination } = useLoaderData() as IRecordsListLoader;
@@ -12,14 +14,24 @@ const RecordsList = () => {
     <>
       <h1 className="text-2xl mb-8">User Records</h1>
       <div className="mb-4">
-        <Link
-          className="text-blue-700 font-bold"
-          to="/records/new"
-        >
-          + New Record
-        </Link>
+        <div className="flex justify-between items-baseline gap-x-4">
+          <div className="flex-grow">
+            <SearchBar
+              placeholder={`Write "addition" or any number...`}
+
+            />
+          </div>
+          <div className="flex-grow-0">
+            <Button
+              className=""
+              // to="/records/new"
+            >
+              + New Record
+            </Button>
+          </div>
+        </div>
       </div>
-      <RecordsTable items={records} />
+      <RecordsTable items={records}/>
       {pagination && (
         <Pagination
           page={parseInt(pagination.page, 10)}
