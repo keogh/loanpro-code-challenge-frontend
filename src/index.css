@@ -15,3 +15,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.rdg {
+  .rdg-header-row {
+    @apply bg-white;
+  }
+
+  .rdg-cell {
+    @apply border-b
+  }
+}
