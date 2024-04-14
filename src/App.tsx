@@ -48,6 +48,7 @@ const router = createBrowserRouter([
     ]
   },
   {
+    // TODO: Redirect to root "/" if already logged in
     path: `${basePath}/login`,
     element: <Login />,
   },

@@ -5,6 +5,7 @@ import Input from "../../components/Input";
 import ErrorMessage from "../../components/ErrorMessage";
 import {FormInput} from "./types";
 import {signIn} from "./loginModel";
+import Button from "../../components/Button";
 
 const LoginForm: React.FC = () => {
   const {
@@ -78,13 +79,12 @@ const LoginForm: React.FC = () => {
       </div>
 
       <div>
-        <button
+        <Button
           type="submit"
-          className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
           disabled={isSubmitting}
         >
           Sign in
-        </button>
+        </Button>
       </div>
     </form>
   );
