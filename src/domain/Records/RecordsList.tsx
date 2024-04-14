@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useLoaderData } from "react-router-dom";
+import {Link, useLoaderData} from "react-router-dom";
 
 import RecordsTable from "./RecordsTable";
 import {IRecordsListLoader} from "./types";
@@ -10,6 +10,15 @@ const RecordsList = () => {
 
   return (
     <>
+      <h1 className="text-2xl mb-8">User Records</h1>
+      <div className="mb-4">
+        <Link
+          className="text-blue-700 font-bold"
+          to="/records/new"
+        >
+          + New Record
+        </Link>
+      </div>
       <RecordsTable items={records} />
       {pagination && (
         <Pagination
