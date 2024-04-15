@@ -4,6 +4,7 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {ISearchBarFormInput} from "./types";
+import {useUpdateSearchQuery} from "../Navigation";
 
 type Props = {
   placeholder?: string;
@@ -18,13 +19,16 @@ const SearchBar = ({ placeholder }: Props) => {
     watch,
   } = useForm<ISearchBarFormInput>();
 
+  const updateSearchQuery = useUpdateSearchQuery();
+
   const onSubmit: SubmitHandler<ISearchBarFormInput> = async (data) => {
-    console.log(data);
+    updateSearchQuery(data.search);
   }
 
   const handleClickReset = React.useCallback(() => {
     reset();
-  }, [reset]);
+    updateSearchQuery('');
+  }, [reset, updateSearchQuery]);
 
   const searchValue = watch('search');
 

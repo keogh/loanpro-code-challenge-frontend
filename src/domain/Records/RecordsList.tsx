@@ -18,8 +18,7 @@ const RecordsList = () => {
         <div className="flex justify-between items-baseline gap-x-4">
           <div className="flex-grow">
             <SearchBar
-              placeholder={`Write "addition" or any number...`}
-
+              placeholder={`Write an operation type, like "addition"...`}
             />
           </div>
           <div className="flex-grow-0">
