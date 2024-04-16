@@ -14,3 +14,8 @@ export interface IRecordsTableRow {
   user_balance: number;
   created_at: string;
 }
+
+export type GetColumnsArgs = {
+  onClickDelete: (rowId: number) => void
+};
+
