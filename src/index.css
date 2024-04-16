@@ -24,6 +24,10 @@ code {
   }
 
   .rdg-cell {
-    @apply border-b
+    @apply border-b;
+  }
+
+  .rdg-sort-arrow {
+    @apply inline-block;
   }
 }

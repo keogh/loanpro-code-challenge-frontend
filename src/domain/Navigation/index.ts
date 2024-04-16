@@ -1,1 +1,1 @@
-export { default as useUpdateSearchQuery } from './useUpdateSearchQuery';
+export { default as useUpdateQueryString } from './useUpdateQueryString';

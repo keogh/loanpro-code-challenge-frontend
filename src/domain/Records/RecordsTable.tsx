@@ -1,6 +1,7 @@
 import * as React from "react";
-import DataGrid, {Column} from 'react-data-grid';
+import DataGrid, {Column, SortColumn} from 'react-data-grid';
 import {IRecordsTableRow} from "./types";
+import {useUpdateQueryString} from "../Navigation";
 
 const columns: Column<IRecordsTableRow>[] = [
   { key: 'id', name: 'ID' },
@@ -14,6 +15,7 @@ const columns: Column<IRecordsTableRow>[] = [
 
 const DEFAULT_COLUMN_OPTIONS = {
   resizable: true,
+  sortable: true,
 };
 
 type Props = {
@@ -21,6 +23,15 @@ type Props = {
 }
 
 const RecordsTable = ({ items }: Props) => {
+  const updateQueryString = useUpdateQueryString();
+  const [sortColumns, setSortColumns] = React.useState<SortColumn[]>([]);
+
+  const handleSortColumnsChange = React.useCallback((columns: SortColumn[]) => {
+    const { columnKey: sort_by = '', direction = '' } = columns[0] ?? {};
+    setSortColumns(columns);
+    updateQueryString({ sort_by, direction });
+  }, [updateQueryString]);
+
   return (
     <>
       <DataGrid
@@ -28,6 +39,8 @@ const RecordsTable = ({ items }: Props) => {
         columns={columns}
         rows={items}
         defaultColumnOptions={DEFAULT_COLUMN_OPTIONS}
+        sortColumns={sortColumns}
+        onSortColumnsChange={handleSortColumnsChange}
       />
     </>
   );
