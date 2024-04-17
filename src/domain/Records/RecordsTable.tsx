@@ -5,6 +5,8 @@ import {useUpdateQueryString} from "../Navigation";
 import { TrashIcon } from "@heroicons/react/20/solid";
 import Button from "../../components/Button";
 import ConfirmDialog from "../../components/ConfirmDialog";
+import {deleteRecord} from "../Api/records";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const getColumns = ({ onClickDelete }: GetColumnsArgs): Column<IRecordsTableRow>[] => ([
   { key: 'id', name: 'ID' },
@@ -43,6 +45,8 @@ type Props = {
 }
 
 const RecordsTable = ({ items }: Props) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const updateQueryString = useUpdateQueryString();
 
   const [sortColumns, setSortColumns] = React.useState<SortColumn[]>([]);
@@ -55,13 +59,24 @@ const RecordsTable = ({ items }: Props) => {
     updateQueryString({ sort_by, direction });
   }, [updateQueryString]);
 
-  const handleClickConfirm = React.useCallback(() => {
+  const handleClickConfirm = React.useCallback(async () => {
     if (currentRowId === null) {
       setOpenConfirmDialog(false);
       return;
     }
-    console.log(`Delete rowId: ${currentRowId}`);
-    // TODO: Call DELETE API
+
+    try {
+      const response = await deleteRecord(currentRowId);
+      // TODO: Show success message, where?
+      const currentPath = location.pathname + location.search + location.hash;
+      navigate(currentPath, { replace: true });
+    } catch (e) {
+      console.error(e);
+      // TODO: Show error unable to delete, where?
+    } finally {
+      setOpenConfirmDialog(false);
+      setCurrentRowId(null);
+    }
   }, [currentRowId]);
 
   const columns = React.useMemo(() => {
