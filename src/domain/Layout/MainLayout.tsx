@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {FlashBanner} from "../../components/Flash";
 
 type Props = {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ const MainLayout = ({ children }: Props) => {
         <div
           className={`rounded-lg bg-white px-5 py-6 shadow sm:px-6`}
         >
+          <FlashBanner />
           {children}
         </div>
       </div>
