@@ -9,6 +9,7 @@ import ErrorMessage from "../../components/ErrorMessage";
 
 interface IOperation {
   id: number | string;
+  name: string;
   type: string;
   cost: number;
 }
@@ -96,7 +97,7 @@ const RecordForm = () => {
               >
                 <option value=""></option>
                 {operations.map((op, i) => (
-                  <option key={op.type} value={op.id}>{op.type}</option>
+                  <option key={op.type} value={op.id}>{op.name}</option>
                 ))}
               </select>
             </div>
