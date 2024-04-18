@@ -6,7 +6,6 @@ import LogoutButton from "../Logout/LogoutButton";
 
 const navigation = [
   { name: 'Records', href: '/records' },
-  { name: 'About', href: '/about' },
 ]
 
 export default function Example() {
