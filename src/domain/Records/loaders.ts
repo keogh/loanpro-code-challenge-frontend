@@ -3,7 +3,7 @@ import {OPERATIONS_URL, RECORDS_LIST_URL} from "../Api/routes";
 import {getApi} from "../Api/utils";
 
 export const recordNewLoader = async () => {
-  return fetch(OPERATIONS_URL, {
+  return fetch(`${OPERATIONS_URL}?sort_by=name&direction=asc`, {
     method: "GET",
     headers: {
       'Content-Type': 'application/json',

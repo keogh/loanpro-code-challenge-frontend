@@ -7,7 +7,7 @@ const LogoutButton = () => {
   const handleClick = React.useCallback(() => {
     localStorage.removeItem('authToken');
     navigate('/login');
-  }, []);
+  }, [navigate]);
 
   return (
     <button

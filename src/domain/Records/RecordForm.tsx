@@ -38,12 +38,15 @@ const RecordForm = () => {
   const navigate = useNavigate();
 
   const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [isSelectedRandomString, setIsSelectedRandomString] = React.useState(false);
+  const [isSelectedSquareRoot, setIsSelectedSquareRoot] = React.useState(false);
   const [submitError, setSubmitError] = React.useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm<IRecordFormInput>({
     resolver: yupResolver(validationSchema)
   });
@@ -66,6 +69,20 @@ const RecordForm = () => {
       setIsSubmitting(false);
     }
   }
+
+  const selectedOperationId = watch('operation_id');
+  React.useEffect(() => {
+    const selectedOperation = operations.find(
+      (operation) => operation.id === parseInt(selectedOperationId,10)
+    )
+    if (selectedOperation === undefined) {
+      setIsSelectedRandomString(false);
+      setIsSelectedSquareRoot(false);
+      return;
+    }
+    setIsSelectedRandomString(selectedOperation.type === 'random_string');
+    setIsSelectedSquareRoot(selectedOperation.type === 'square_root');
+  }, [selectedOperationId, operations])
 
   return (
     <div
@@ -104,7 +121,12 @@ const RecordForm = () => {
           </div>
 
           <div className="sm:col-span-3">
-            <label htmlFor="operator1" className="block text-sm font-medium leading-6 text-gray-900">Operator 1</label>
+            <label
+              htmlFor="operator1"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              {isSelectedRandomString ? 'String length' : 'Operator 1'}
+            </label>
             <div className="mt-2">
               <Input
                 type="number"
@@ -116,15 +138,19 @@ const RecordForm = () => {
           </div>
 
           <div className="sm:col-span-3">
-            <label htmlFor="operator2" className="block text-sm font-medium leading-6 text-gray-900">Operator 2</label>
-            <div className="mt-2">
-              <Input
-                type="number"
-                {...register('operator2')}
-                error={!!errors.operator2}
-                disabled={isSubmitting}
-              />
-            </div>
+            {!isSelectedRandomString && !isSelectedSquareRoot && (
+              <>
+                <label htmlFor="operator2" className="block text-sm font-medium leading-6 text-gray-900">Operator 2</label>
+                <div className="mt-2">
+                  <Input
+                    type="number"
+                    {...register('operator2')}
+                    error={!!errors.operator2}
+                    disabled={isSubmitting}
+                  />
+                </div>
+              </>
+            )}
           </div>
 
           {!!submitError && (
