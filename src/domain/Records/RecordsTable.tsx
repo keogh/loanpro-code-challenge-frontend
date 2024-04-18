@@ -80,7 +80,7 @@ const RecordsTable = ({ items }: Props) => {
       setOpenConfirmDialog(false);
       setCurrentRowId(null);
     }
-  }, [currentRowId]);
+  }, [addFlash, currentRowId, location.hash, location.pathname, location.search, navigate]);
 
   const columns = React.useMemo(() => {
     return getColumns({
@@ -117,11 +117,15 @@ const RecordsTable = ({ items }: Props) => {
           defaultColumnOptions={DEFAULT_COLUMN_OPTIONS}
           sortColumns={sortColumns}
           onSortColumnsChange={handleSortColumnsChange}
-          rowKeyGetter={(row) => row.id}
+          rowKeyGetter={rowGetter}
         />
       </div>
     </>
   );
 };
+
+function rowGetter(row: IRecordsTableRow) {
+  return row.id
+}
 
 export default RecordsTable;

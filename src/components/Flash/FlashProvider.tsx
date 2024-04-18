@@ -10,19 +10,21 @@ type Props = {
 export const FlashProvider = ({ children }: Props) => {
   const [messages, setMessages] = React.useState<FlashMessage[]>([]);
 
-  const addFlash = (text: string) => {
+  const addFlash = React.useCallback((text: string) => {
     const newMessage = { id: new Date().getTime(), text }; // use timestamp as a unique id
     setMessages((prevMessages) => [...prevMessages, newMessage]);
-  };
+  }, []);
 
-  const removeFlash = (id: number) => {
+  const removeFlash = React.useCallback((id: number) => {
     setMessages((prevMessages) =>
       prevMessages.filter((msg) => msg.id !== id)
     );
-  };
+  }, []);
+
+  const contextValue = { addFlash, removeFlash, messages };
 
   return (
-    <FlashContext.Provider value={{ addFlash, removeFlash, messages }}>
+    <FlashContext.Provider value={contextValue}>
       {children}
     </FlashContext.Provider>
   );

@@ -46,11 +46,7 @@ const router = createBrowserRouter([
         path: 'records/new',
         element: <RecordNew />,
         loader: recordNewLoader,
-      },
-      {
-        path: 'records/:id',
-        element: <RecordDetails />,
-      },
+      }
     ]
   },
   {

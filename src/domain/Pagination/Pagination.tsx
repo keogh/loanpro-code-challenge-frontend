@@ -27,32 +27,12 @@ const Pagination = ({
   }, [page, navigate]);
 
   const rowsPerPageOptions = React.useMemo(() => {
-    const options = [];
-    let i = 0;
-    let delta;
-
-    if (totalItems < 50) {
-      delta = 5;
-    } else if (totalItems < 100) {
-      delta = 10;
-    } else if (totalItems < 500) {
-      delta = 25;
-    } else if (totalItems < 1000) {
-      delta = 50;
-    } else {
-      delta = 100;
-    }
-
-    do {
-      i = i + delta;
-      options.push({
-        label: i,
-        value: i,
-      });
-    } while (i < totalItems);
-
-    return options;
-  }, [totalItems]);
+    const perPageOptions = [5, 10, 25, 100, 300, 500, 800, 1000];
+    return perPageOptions.map((option) => ({
+      label: option,
+      value: option,
+    }))
+  }, []);
 
   const lastItemNumber = page * perPage;
   let firstItemNumber = (lastItemNumber - perPage) + 1;

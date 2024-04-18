@@ -1,17 +1,25 @@
-import { useState } from 'react'
+import * as React from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {Link, useLocation} from "react-router-dom";
 import LogoutButton from "../Logout/LogoutButton";
 
 const navigation = [
-  { name: 'Home', href: '/' },
   { name: 'Records', href: '/records' },
+  { name: 'About', href: '/about' },
 ]
 
 export default function Example() {
   const location = useLocation();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+
+  const handleClickOpen = React.useCallback(() => {
+    setMobileMenuOpen(true);
+  }, []);
+
+  const handleClickClose = React.useCallback(() => {
+    setMobileMenuOpen(true);
+  }, []);
 
   return (
     <header className="bg-white">
@@ -40,7 +48,7 @@ export default function Example() {
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={handleClickOpen}
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
@@ -61,7 +69,7 @@ export default function Example() {
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={handleClickClose}
             >
               <span className="sr-only">Close menu</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
