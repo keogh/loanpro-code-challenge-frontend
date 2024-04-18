@@ -10,7 +10,9 @@ const MainLayout = ({ children }: Props) => {
   return (
     <div className="min-h-full bg-gray-300 h-[100vh]">
       <Header />
-      <FlashBanner />
+      <div className="mt-2">
+        <FlashBanner />
+      </div>
       <main className="mt-4 h-5/6">
         <div
           className={`

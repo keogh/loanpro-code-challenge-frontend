@@ -6,6 +6,7 @@ import * as yup from "yup"
 import {yupResolver} from "@hookform/resolvers/yup";
 import {postRecord} from "../Api";
 import ErrorMessage from "../../components/ErrorMessage";
+import {useFlash} from "../../components/Flash";
 
 interface IOperation {
   id: number | string;
@@ -34,6 +35,7 @@ const validationSchema = yup.object({
 const RecordForm = () => {
   const data = useLoaderData() as IRecordNewLoader;
   const operations = data.operations;
+  const { addFlash } = useFlash();
 
   const navigate = useNavigate();
 
@@ -61,7 +63,8 @@ const RecordForm = () => {
         throw new Error(responseData.error)
       }
 
-      navigate(`/records/${responseData.record_id}`);
+      addFlash('Record created successfully', 'success');
+      navigate(`/records`);
     } catch (e) {
       // @ts-ignore
       setSubmitError(e.message);
@@ -87,7 +90,7 @@ const RecordForm = () => {
   return (
     <div
       className={`
-        flex min-h-full flex-1 flex-col justify-center px-6 py-12 
+        flex flex-1 flex-col px-6 py-12 
         lg:px-8 md:max-w-[450px]
         ring-1 ring-gray-200 shadow-sm 
         rounded-lg`}
@@ -114,7 +117,9 @@ const RecordForm = () => {
               >
                 <option value=""></option>
                 {operations.map((op, i) => (
-                  <option key={op.type} value={op.id}>{op.name}</option>
+                  <option key={op.type} value={op.id}>
+                    {op.name} - cost: {op.cost}
+                  </option>
                 ))}
               </select>
             </div>

@@ -4,7 +4,7 @@ export interface FlashMessage {
 }
 
 export interface FlashContextType {
-  addFlash: (text: string) => void;
+  addFlash: (text: string, type?: string) => void;
   removeFlash: (id: number) => void;
   messages: FlashMessage[];
 }
