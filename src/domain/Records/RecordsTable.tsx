@@ -7,6 +7,7 @@ import Button from "../../components/Button";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import {deleteRecord} from "../Api/records";
 import {useLocation, useNavigate} from "react-router-dom";
+import {useFlash} from "../../components/Flash";
 
 const getColumns = ({ onClickDelete }: GetColumnsArgs): Column<IRecordsTableRow>[] => ([
   { key: 'id', name: 'ID' },
@@ -25,11 +26,13 @@ const getColumns = ({ onClickDelete }: GetColumnsArgs): Column<IRecordsTableRow>
       };
 
       return (
-        <>
-          <Button variant="secondary" onClick={onClick}>
-            <TrashIcon className="h-5 w-5" />
-          </Button>
-        </>
+        <div className="flex justify-start items-center h-full">
+          <div>
+            <Button  variant="secondary" onClick={onClick}>
+              <TrashIcon className="h-3 w-3" />
+            </Button>
+          </div>
+        </div>
       );
     }
   },
@@ -48,6 +51,7 @@ const RecordsTable = ({ items }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const updateQueryString = useUpdateQueryString();
+  const { addFlash } = useFlash();
 
   const [sortColumns, setSortColumns] = React.useState<SortColumn[]>([]);
   const [openConfirmDialog, setOpenConfirmDialog] = React.useState(false);
@@ -67,12 +71,11 @@ const RecordsTable = ({ items }: Props) => {
 
     try {
       const response = await deleteRecord(currentRowId);
-      // TODO: Show success message, where?
+      addFlash(`Record with id ${currentRowId} was successfully deleted.`);
       const currentPath = location.pathname + location.search + location.hash;
       navigate(currentPath, { replace: true });
     } catch (e) {
-      console.error(e);
-      // TODO: Show error unable to delete, where?
+      addFlash(`Error while trying to delete Record with id ${currentRowId}. ${e}`);
     } finally {
       setOpenConfirmDialog(false);
       setCurrentRowId(null);
@@ -97,8 +100,8 @@ const RecordsTable = ({ items }: Props) => {
     <>
       <ConfirmDialog
         content={`
-          Are you sure you want to delete the record?
-          The record will be permanently removed. This action cannot be undone.
+          Are you sure you want to delete the record? All the balances after the record will be updated. 
+          The record will be permanently removed. This action cannot be undone. This
         `}
         open={openConfirmDialog}
         onConfirm={handleClickConfirm}
