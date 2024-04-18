@@ -1,5 +1,10 @@
 import * as React from "react";
-import {ChevronLeftIcon, ChevronRightIcon} from "@heroicons/react/20/solid";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
+} from "@heroicons/react/20/solid";
 import {Link, useNavigate} from "react-router-dom";
 
 type Props = {
@@ -24,8 +29,22 @@ const Pagination = ({
   const rowsPerPageOptions = React.useMemo(() => {
     const options = [];
     let i = 0;
+    let delta;
+
+    if (totalItems < 50) {
+      delta = 5;
+    } else if (totalItems < 100) {
+      delta = 10;
+    } else if (totalItems < 500) {
+      delta = 25;
+    } else if (totalItems < 1000) {
+      delta = 50;
+    } else {
+      delta = 100;
+    }
+
     do {
-      i = i + 5;
+      i = i + delta;
       options.push({
         label: i,
         value: i,
@@ -71,10 +90,21 @@ const Pagination = ({
         <div>
           <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
             <Link
-              to={`/records?page=${page-1}&per_page=${perPage}`}
+              to={`/records?page=1&per_page=${perPage}`}
               className={`
                 ${isFirstPage ? 'pointer-events-none' : ''}
                 relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 
+                ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0
+              `}
+            >
+              <span className="sr-only">First</span>
+              <ChevronDoubleLeftIcon className="h-5 w-5" aria-hidden="true" />
+            </Link>
+            <Link
+              to={`/records?page=${page-1}&per_page=${perPage}`}
+              className={`
+                ${isFirstPage ? 'pointer-events-none' : ''}
+                relative inline-flex items-center px-2 py-2 text-gray-400 
                 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0
               `}
             >
@@ -88,15 +118,27 @@ const Pagination = ({
               {page}
             </span>
             <Link
-              to={isLastPage ? "#" : `/records?page=${page+1}&per_page=${perPage}`}
+              to={`/records?page=${page+1}&per_page=${perPage}`}
+              className={`
+                ${isLastPage ? 'pointer-events-none' : ''}
+                relative inline-flex items-center px-2 py-2 text-gray-400 
+                ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0
+              `}
+            >
+              <span className="sr-only">Next</span>
+              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+            </Link>
+
+            <Link
+              to={`/records?page=${totalPages}&per_page=${perPage}`}
               className={`
                 ${isLastPage ? 'pointer-events-none' : ''}
                 relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 
                 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0
               `}
             >
-              <span className="sr-only">Next</span>
-              <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
+              <span className="sr-only">Last</span>
+              <ChevronDoubleRightIcon className="h-5 w-5" aria-hidden="true" />
             </Link>
           </nav>
         </div>
