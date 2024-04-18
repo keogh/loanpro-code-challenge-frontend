@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {Link, useLocation} from "react-router-dom";
+import LogoutButton from "../Logout/LogoutButton";
 
 const navigation = [
   { name: 'Home', href: '/' },
@@ -46,9 +47,7 @@ export default function Example() {
           </button>
         </div>
         <div className="hidden lg:flex">
-          <Link to="/logout" className="text-sm font-semibold leading-6 text-gray-900">
-            Log out
-          </Link>
+          <LogoutButton />
         </div>
       </nav>
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
