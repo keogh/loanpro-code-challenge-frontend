@@ -6,6 +6,7 @@ import {
   ChevronRightIcon
 } from "@heroicons/react/20/solid";
 import {Link, useNavigate} from "react-router-dom";
+import {useUpdateQueryString} from "../Navigation";
 
 type Props = {
   page: number;
@@ -20,11 +21,14 @@ const Pagination = ({
   totalPages,
   totalItems
 }: Props) => {
-  const navigate = useNavigate();
+  const updateQueryString = useUpdateQueryString();
 
   const handleChangePerPage = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    navigate(`/records?page=${page}&per_page=${e.target.value}`);
-  }, [page, navigate]);
+    updateQueryString({
+      page,
+      per_page: e.target.value
+    });
+  }, [page, updateQueryString]);
 
   const rowsPerPageOptions = React.useMemo(() => {
     const perPageOptions = [5, 10, 25, 100, 300, 500, 800, 1000];
@@ -70,7 +74,9 @@ const Pagination = ({
         <div>
           <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
             <Link
-              to={`/records?page=1&per_page=${perPage}`}
+              to={
+                updateQueryString({ page: 1, per_page: perPage }, true) ?? ''
+              }
               className={`
                 ${isFirstPage ? 'pointer-events-none' : ''}
                 relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 
@@ -81,7 +87,9 @@ const Pagination = ({
               <ChevronDoubleLeftIcon className="h-5 w-5" aria-hidden="true" />
             </Link>
             <Link
-              to={`/records?page=${page-1}&per_page=${perPage}`}
+              to={
+                updateQueryString({ page: page - 1, per_page: perPage }, true) ?? ''
+              }
               className={`
                 ${isFirstPage ? 'pointer-events-none' : ''}
                 relative inline-flex items-center px-2 py-2 text-gray-400 
@@ -98,7 +106,9 @@ const Pagination = ({
               {page}
             </span>
             <Link
-              to={`/records?page=${page+1}&per_page=${perPage}`}
+              to={
+                updateQueryString({ page: page + 1, per_page: perPage }, true) ?? ''
+              }
               className={`
                 ${isLastPage ? 'pointer-events-none' : ''}
                 relative inline-flex items-center px-2 py-2 text-gray-400 
@@ -110,7 +120,9 @@ const Pagination = ({
             </Link>
 
             <Link
-              to={`/records?page=${totalPages}&per_page=${perPage}`}
+              to={
+                updateQueryString({ page: totalPages, per_page: perPage }, true) ?? ''
+              }
               className={`
                 ${isLastPage ? 'pointer-events-none' : ''}
                 relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 
