@@ -60,7 +60,7 @@ const Pagination = ({
   const isLastPage = page === Math.ceil(totalItems / perPage);
 
   return (
-    <div className="flex justify-between">
+    <div className="flex flex-col sm:flex-row sm:justify-between gap-y-3">
       <div className="flex items-baseline gap-x-2 pl-2">
         <label htmlFor="rowsPerPage" className="text-sm">
           Rows per page:
@@ -82,7 +82,7 @@ const Pagination = ({
         </select>
       </div>
 
-      <div className="flex justify-start items-center gap-3 pr-2">
+      <div className="flex flex-col sm:flex-row sm:justify-start sm:items-center gap-3 pl-3 pr-2">
         <div className="text-sm">
           {firstItemNumber} - {lastItemNumber > totalItems ? totalItems : lastItemNumber} of {totalItems}
         </div>

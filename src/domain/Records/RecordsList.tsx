@@ -15,21 +15,22 @@ const RecordsList = () => {
     <>
       <h1 className="text-2xl mb-8">User Records</h1>
       <div className="mb-4">
-        <div className="flex justify-between items-baseline gap-x-4">
-          <div className="flex-grow">
-            <SearchBar
-              placeholder={`Write an operation type, like "addition"...`}
-            />
-          </div>
-          <div className="flex-grow-0">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-x-4">
+          <div className="flex-grow-0 max-w-[60px]">
             <Button
               className="flex items-center justify-center"
               title="New Record"
               to="/records/new"
             >
               +
-              <CalculatorIcon className="h-5 w-5" />
+              <CalculatorIcon className="h-5 w-5"/>
             </Button>
+          </div>
+
+          <div className="flex-grow">
+            <SearchBar
+              placeholder={`Write an operation type, like "addition"...`}
+            />
           </div>
         </div>
       </div>

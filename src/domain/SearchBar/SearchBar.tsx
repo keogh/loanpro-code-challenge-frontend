@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {MagnifyingGlassIcon, XMarkIcon} from "@heroicons/react/20/solid";
+import {MagnifyingGlassIcon, XMarkIcon, ArrowRightCircleIcon} from "@heroicons/react/20/solid";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import {SubmitHandler, useForm} from "react-hook-form";
@@ -65,9 +65,9 @@ const SearchBar = ({ placeholder }: Props) => {
           <Button
             type="submit"
             variant="soft"
-            className="rounded-tl-none rounded-bl-none ring-1 ring-inset ring-gray-300"
+            className="rounded-tl-none rounded-bl-none ring-1 ring-inset ring-gray-300 h-full items-center"
           >
-            Search
+            <ArrowRightCircleIcon className="h-5 w-5" aria-hidden="true"/>
           </Button>
         </div>
       </div>

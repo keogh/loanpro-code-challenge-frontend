@@ -109,15 +109,17 @@ const RecordsTable = ({ items }: Props) => {
         title="Delete Record"
         confirmButtonLabel="Delete"
       />
-      <DataGrid
-        className="rdg-light"
-        columns={columns}
-        rows={items}
-        defaultColumnOptions={DEFAULT_COLUMN_OPTIONS}
-        sortColumns={sortColumns}
-        onSortColumnsChange={handleSortColumnsChange}
-        rowKeyGetter={(row) => row.id}
-      />
+      <div className="h-[320px] lg:h-[720px]">
+        <DataGrid
+          className="rdg-light"
+          columns={columns}
+          rows={items}
+          defaultColumnOptions={DEFAULT_COLUMN_OPTIONS}
+          sortColumns={sortColumns}
+          onSortColumnsChange={handleSortColumnsChange}
+          rowKeyGetter={(row) => row.id}
+        />
+      </div>
     </>
   );
 };
