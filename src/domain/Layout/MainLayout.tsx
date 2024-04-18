@@ -10,6 +10,7 @@ const MainLayout = ({ children }: Props) => {
   return (
     <div className="min-h-full bg-gray-300 h-[100vh]">
       <Header />
+      <FlashBanner />
       <main className="mt-4 h-5/6">
         <div
           className={`
@@ -19,7 +20,6 @@ const MainLayout = ({ children }: Props) => {
           <div
             className={`rounded-lg bg-white px-5 py-6 shadow sm:px-6 h-full`}
           >
-            <FlashBanner />
             {children}
           </div>
         </div>
