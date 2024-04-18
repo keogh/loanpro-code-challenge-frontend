@@ -17,7 +17,7 @@ code {
 }
 
 .rdg {
-  @apply border-b border-b-gray-200;
+  @apply border-b border-b-gray-200 h-[720px] min-h-[320px];
 
   .rdg-header-row {
     @apply bg-white;
