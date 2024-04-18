@@ -33,7 +33,10 @@ const router = createBrowserRouter([
     ),
     errorElement: <ErrorBoundary />,
     children: [
-      { index: true, element: <HomePage /> },
+      {
+        index: true,
+        element: <Navigate to={`${basePath}/records`} replace />,
+      },
       {
         path: 'records',
         element: <RecordsList />,
