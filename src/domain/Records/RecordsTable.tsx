@@ -70,7 +70,7 @@ const RecordsTable = ({ items }: Props) => {
     }
 
     try {
-      const response = await deleteRecord(currentRowId);
+      await deleteRecord(currentRowId);
       addFlash(`Record with id ${currentRowId} was successfully deleted.`);
       const currentPath = location.pathname + location.search + location.hash;
       navigate(currentPath, { replace: true });

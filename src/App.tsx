@@ -2,10 +2,8 @@ import 'react-data-grid/lib/styles.css';
 import React from 'react';
 import {createBrowserRouter, RouterProvider, Outlet, useRouteError, Navigate} from 'react-router-dom';
 import Login from './domain/Login';
-import HomePage from './domain/Homepage';
 import AuthWrapper from "./domain/Auth/AuthWrapper";
 import {
-  RecordDetails,
   RecordNew,
   RecordsList,
   recordNewLoader

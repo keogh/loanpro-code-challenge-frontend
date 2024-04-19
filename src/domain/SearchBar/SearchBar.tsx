@@ -14,7 +14,6 @@ const SearchBar = ({ placeholder }: Props) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
     reset,
     watch,
   } = useForm<ISearchBarFormInput>();
