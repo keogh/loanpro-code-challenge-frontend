@@ -66,7 +66,7 @@ function ErrorBoundary() {
   let error = useRouteError() as Error;
 
   if (error.cause === errorCauseList.INVALID_TOKEN) {
-    return <Navigate to="/login" />
+    return <Navigate to={`${basePath}/login`} replace />
   }
 
   throw error;
