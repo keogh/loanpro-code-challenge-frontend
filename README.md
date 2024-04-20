@@ -30,6 +30,11 @@ If you are running the backend server in a different host or port.
 Please specify it in `src/domain/Api/routes.ts` file, look for the 
 variable `BASE_URL` and set it to your correct host and port.
 
+### Sign-in
+
+In order to use this app you need to sign-in, there are two sample users:
+- `testuser/123qweasd`, user with over 1k records
+- `tesuser2/123qweasd`, user with balance equals to 1
 
 ## Roadmap
 
