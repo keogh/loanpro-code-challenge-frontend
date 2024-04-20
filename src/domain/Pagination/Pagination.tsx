@@ -75,7 +75,10 @@ const Pagination = ({
           <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
             <Link
               to={
-                updateQueryString({ page: 1, per_page: perPage }, true) ?? ''
+                updateQueryString(
+                  { page: 1, per_page: perPage },
+                  { returnNewUrl: true },
+                ) ?? ''
               }
               className={`
                 ${isFirstPage ? 'pointer-events-none' : ''}
@@ -88,7 +91,10 @@ const Pagination = ({
             </Link>
             <Link
               to={
-                updateQueryString({ page: page - 1, per_page: perPage }, true) ?? ''
+                updateQueryString(
+                  { page: page - 1, per_page: perPage },
+                  { returnNewUrl: true },
+                ) ?? ''
               }
               className={`
                 ${isFirstPage ? 'pointer-events-none' : ''}
@@ -107,7 +113,10 @@ const Pagination = ({
             </span>
             <Link
               to={
-                updateQueryString({ page: page + 1, per_page: perPage }, true) ?? ''
+                updateQueryString(
+                  { page: page + 1, per_page: perPage },
+                  { returnNewUrl: true },
+                  ) ?? ''
               }
               className={`
                 ${isLastPage ? 'pointer-events-none' : ''}
@@ -121,7 +130,10 @@ const Pagination = ({
 
             <Link
               to={
-                updateQueryString({ page: totalPages, per_page: perPage }, true) ?? ''
+                updateQueryString(
+                  { page: totalPages, per_page: perPage },
+                  { returnNewUrl: true },
+                  ) ?? ''
               }
               className={`
                 ${isLastPage ? 'pointer-events-none' : ''}

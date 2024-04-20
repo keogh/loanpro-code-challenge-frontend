@@ -21,7 +21,7 @@ const SearchBar = ({ placeholder }: Props) => {
   const updateQueryString = useUpdateQueryString();
 
   const onSubmit: SubmitHandler<ISearchBarFormInput> = async (data) => {
-    updateQueryString({ search: data.search });
+    updateQueryString({ search: data.search }, { replace: true });
   }
 
   const handleClickReset = React.useCallback(() => {

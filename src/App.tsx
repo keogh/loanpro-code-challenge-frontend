@@ -33,7 +33,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'records',
-        element: <RecordsList />,
+        element: (
+          <React.Suspense fallback={<div>Loading...</div>}>
+            <RecordsList />
+          </React.Suspense>
+        ),
         loader: recordsListLoader,
       },
       {
