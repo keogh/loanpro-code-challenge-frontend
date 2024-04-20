@@ -1,6 +1,6 @@
 {
   "name": "codechallenge-react",
-  "homepage": "https://keogh.github.io/loanpro-code-challenge-frontend/",
+  "homepage": "https://keogh.github.io/loanpro-code-challenge-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
