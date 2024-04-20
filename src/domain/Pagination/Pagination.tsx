@@ -25,10 +25,10 @@ const Pagination = ({
 
   const handleChangePerPage = React.useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
     updateQueryString({
-      page,
+      page: 1,
       per_page: e.target.value
     });
-  }, [page, updateQueryString]);
+  }, [updateQueryString]);
 
   const rowsPerPageOptions = React.useMemo(() => {
     const perPageOptions = [5, 10, 25, 100, 300, 500, 800, 1000];
