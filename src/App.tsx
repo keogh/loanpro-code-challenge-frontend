@@ -18,9 +18,13 @@ import {FlashProvider} from "./components/Flash";
 // const basePath = process.env.NODE_ENV === 'development' ? '' : process.env.PUBLIC_URL;
 const basePath = process.env.PUBLIC_URL;
 
+const getBasename = () => {
+  return window.location.pathname.split('/')[1] === 'loanpro-code-challenge-frontend' ? '/loanpro-code-challenge-frontend' : '';
+};
+
 const router = createBrowserRouter([
   {
-    path: `${basePath}/`,
+    path: `/`,
     element: (
       <FlashProvider>
         <AuthWrapper>
@@ -34,7 +38,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Navigate to={`${basePath}/records`} replace />,
+        element: <Navigate to={`/records`} replace />,
       },
       {
         path: 'records',
@@ -50,10 +54,12 @@ const router = createBrowserRouter([
   },
   {
     // TODO: Redirect to root "/" if already logged in
-    path: `${basePath}/login`,
+    path: `/login`,
     element: <Login />,
   },
-]);
+], {
+  basename: getBasename(),
+});
 
 const App: React.FC = () => {
   return (
@@ -67,7 +73,7 @@ function ErrorBoundary() {
   let error = useRouteError() as Error;
 
   if (error.cause === errorCauseList.INVALID_TOKEN) {
-    return <Navigate to={`${basePath}/login`} replace />
+    return <Navigate to={`/login`} replace />
   }
 
   throw error;

@@ -13,7 +13,7 @@ const isAuthenticated = (): boolean => {
 
 const AuthWrapper: React.FC<AuthWrapperProps> = ({ children }) => {
   if (!isAuthenticated()) {
-    return <Navigate to={`${process.env.PUBLIC_URL}/login`} replace />;
+    return <Navigate to={`/login`} replace />;
   }
 
   return <>{children}</>;
