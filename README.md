@@ -36,7 +36,7 @@ In order to use this app you need to sign-in, there are two sample users:
 - `testuser/123qweasd`, user with over 1k records
 - `tesuser2/123qweasd`, user with balance equals to 1
 
-## Roadmap
+## Roadmap (aka as TODO)
 
 At some point I had to stop in order to deliver. However some features
 and ideas are in TODO:
