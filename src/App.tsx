@@ -13,10 +13,6 @@ import {errorCauseList} from "./domain/Api/utils";
 import {MainLayout} from "./domain/Layout";
 import {FlashProvider} from "./components/Flash";
 
-const getBasename = () => {
-  return window.location.pathname.split('/')[1] === 'loanpro-code-challenge-frontend' ? '/loanpro-code-challenge-frontend' : '';
-};
-
 const router = createBrowserRouter([
   {
     path: `/`,
@@ -52,9 +48,7 @@ const router = createBrowserRouter([
     path: `/login`,
     element: <Login />,
   },
-], {
-  basename: getBasename(),
-});
+]);
 
 const App: React.FC = () => {
   return (
