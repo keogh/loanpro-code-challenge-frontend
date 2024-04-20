@@ -13,11 +13,6 @@ import {errorCauseList} from "./domain/Api/utils";
 import {MainLayout} from "./domain/Layout";
 import {FlashProvider} from "./components/Flash";
 
-// process.env.NODE_ENV and process.env.PUBLIC_URL are set by Create React App
-// and then replaced with a string when building the project for dev and prod
-// const basePath = process.env.NODE_ENV === 'development' ? '' : process.env.PUBLIC_URL;
-const basePath = process.env.PUBLIC_URL;
-
 const getBasename = () => {
   return window.location.pathname.split('/')[1] === 'loanpro-code-challenge-frontend' ? '/loanpro-code-challenge-frontend' : '';
 };
