@@ -109,7 +109,7 @@ const RecordsTable = ({ items }: Props) => {
         title="Delete Record"
         confirmButtonLabel="Delete"
       />
-      <div className="h-[320px] lg:h-[720px]">
+      <div className="h-[320px] lg:h-[450px]">
         <DataGrid
           className="rdg-light"
           columns={columns}
