@@ -8,7 +8,7 @@ const navigation = [
   { name: 'Records', href: '/records' },
 ]
 
-export default function Example() {
+export default function Header() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
 
@@ -17,7 +17,8 @@ export default function Example() {
   }, []);
 
   const handleClickClose = React.useCallback(() => {
-    setMobileMenuOpen(true);
+    console.log('here');
+    setMobileMenuOpen(false);
   }, []);
 
   return (
@@ -57,7 +58,7 @@ export default function Example() {
           <LogoutButton />
         </div>
       </nav>
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={handleClickClose}>
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
@@ -88,12 +89,7 @@ export default function Example() {
                 ))}
               </div>
               <div className="py-6">
-                <Link
-                  to="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log out
-                </Link>
+                <LogoutButton />
               </div>
             </div>
           </div>
